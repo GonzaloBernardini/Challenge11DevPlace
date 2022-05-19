@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ConcesionarioChallenge11.Models.Unidades>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@if (User.Identity.IsAuthenticated)
+{
+    <h1>Mis Unidades</h1>
+    <p>
+        <a asp-action="Create">Agregar Nueva Unidad</a>
+    </p>
+}
+else
+{
+    <h1>Unidades en venta</h1>
+
+}
+
+
+<div class="shadow-lg p-3 mb-5 bg-body rounded">
+    <table class="table table-striped table-hover" style="background-color: #E3F2FD">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Marca)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Modelo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImagenAuto)
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Año)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Kilometros)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Precio)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Marca)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Modelo)
+                    </td>
+                    <td>
+                        <img src="@Html.DisplayFor(modelItem => item.ImagenAuto)" class="img-fluid" width="280" height="200" alt="...">
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Año)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Kilometros)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Precio)
+                    </td>
+                    <td>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                            <a class="btn btn-warning" asp-action="Details" asp-route-id="@item.Id">Detalle</a>
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-warning" asp-action="Details" asp-route-id="@item.Id">Mas Informacion</a>
+                        }
+
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+
+}
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@model ConcesionarioChallenge11.Models.Concesionario
+
+<div class="text-center">
+    <h1 class="display-4">@Html.DisplayFor(model => model.Nombre)</h1>
+    <br />
+    <p><a><h4>@Html.DisplayFor(model => model.Descripcion)</h4></a></p>
+    <br />
+    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_940932-MLA49737433064_042022-F.webp" class="img-fluid" alt="..." width="450" height="450">
+</div>
+@section mifooter{
+    <footer class="border-top footer text-center">
+        <div class="container">
+
+            @Html.DisplayFor(model => model.Email) |
+            @Html.DisplayFor(model => model.Direccion) | @Html.DisplayFor(model => model.Telefono)
+        </div>
+        </footer>
+}
+
