@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ConcesionarioChallenge11.Data;
+using ConcesionarioChallenge11.Interfaces;
+using ConcesionarioChallenge11.Repositorios;
 
 namespace ConcesionarioChallenge11
 {
@@ -29,6 +31,7 @@ namespace ConcesionarioChallenge11
 
             services.AddDbContext<ConcesionarioChallenge11Context>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ConcesionarioChallenge11Context")));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddRazorPages();
         }

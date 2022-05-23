@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ConcesionarioChallenge11.Data;
 using ConcesionarioChallenge11.Models;
+using ConcesionarioChallenge11.Interfaces;
 
 namespace ConcesionarioChallenge11.Controllers
 {
@@ -14,15 +15,17 @@ namespace ConcesionarioChallenge11.Controllers
     {
         private readonly ConcesionarioChallenge11Context _context;
 
-        public UnidadesController(ConcesionarioChallenge11Context context)
+        private IUnitOfWork _unitOfWork;
+
+        public UnidadesController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         // GET: Unidades
-        public async Task<IActionResult> Index()
+        public  IActionResult Index()
         {
-            return View(await _context.Unidades.ToListAsync());
+            return View( _unitOfWork.Unidades.GetAll());
         }
 
         // GET: Unidades/Details/5
